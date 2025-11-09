@@ -239,14 +239,14 @@ app.get("/api/payment-status", async(req,res)=>{
     if(!merchantOrderId){
       return res.status(400).send("Merchant Order Id is required");
     }
-
+    
     const response = await client.getOrderStatus(merchantOrderId);
     
-    const status = response.status;
-    if(status === "COMPLETED" || status === "PAID" || status === "SETTLED"){
-      return res.redirect(`${process.env.REDIRECT_URL}/success`)
-    }else{
-      return res.redirect(`${process.env.REDIRECT_URL}/failure`)
+    const status = response.state;
+     if (status === "COMPLETED" || status === "PAID" || status === "SETTLED") {
+      return res.json({ success: true, code: "PAYMENT_SUCCESS" });
+    } else {
+      return res.json({ success: false, code: "PAYMENT_FAILED" });
     }
   }catch(err){
     console.log("error at check status",err);
