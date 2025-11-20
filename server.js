@@ -952,6 +952,12 @@ app.post("/api/payment-status", async (req, res) => {
     const ownerTemplate = fs.readFileSync(ownerTemplatePath, "utf8");
     const userTemplate = fs.readFileSync(userTemplatePath, "utf8");
 
+    // Only send emails if payment is successful
+    if (!(state === "COMPLETED" || state === "PAID" || state === "SETTLED")) {
+      console.log("Payment not successful, skipping emails. State:", state);
+      return res.json({ success: false, code: "PAYMENT_FAILED", state  , order_id});
+    }
+
     // Prepare replacements for owner
     const ownerHtml = renderTemplate(ownerTemplate, {
       BRAND_LOGO_URL: process.env.BRAND_LOGO_URL || "https://free-teal-w9npugfahz.edgeone.app/logo_1.png",
@@ -1038,11 +1044,7 @@ app.post("/api/payment-status", async (req, res) => {
     } else {
       console.log("User email not available - skipping user mail.");
     }
-    // Only send emails if payment is successful
-    if (!(state === "COMPLETED" || state === "PAID" || state === "SETTLED")) {
-      console.log("Payment not successful, skipping emails. State:", state);
-      return res.json({ success: false, code: "PAYMENT_FAILED", state  , order_id});
-    }
+    
 
 
     return res.json({ success: true, code: "PAYMENT_SUCCESS", state });
