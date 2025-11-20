@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <style>
+    body{ font-family: Arial, sans-serif; color:#333; margin:0; padding:20px; background:#f7f7f7; }
+    .card{ background:#fff; border-radius:8px; padding:20px; box-shadow:0 2px 8px rgba(0,0,0,0.06); }
+    header{ display:flex; align-items:center; gap:12px; }
+    header img{ height:42px; }
+    h2{ margin:6px 0 14px 0; color:#1a202c; }
+    table{ width:100%; border-collapse:collapse; margin-top:12px; }
+    th, td{ padding:8px; border:1px solid #e6e6e6; text-align:left; font-size:13px; }
+    th{ background:#fafafa; }
+    .muted{ color:#666; font-size:13px; }
+    .small{ font-size:12px; color:#777; }
+    .cta{ display:inline-block; padding:10px 14px; background:#2563eb; color:#fff; border-radius:6px; text-decoration:none; margin-top:8px; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <header>
+      <img src="{{BRAND_LOGO_URL}}" alt="{{BRAND_NAME}} logo" onerror="this.style.display='none'"/>
+      <div>
+        <strong style="font-size:16px">{{BRAND_NAME}}</strong><br/>
+        <span class="small">Order receipt</span>
+      </div>
+    </header>
+
+    <h2>Order Confirmation</h2>
+
+    <p>Hello <strong>{{NAME}}</strong>,</p>
+    <p>Thanks for your order. Below is a summary of your purchase. A PDF invoice is attached to this email.</p>
+
+    <div class="section-title">Payment Summary</div>
+    <p>
+      <strong>Order ID:</strong> {{ORDER_ID}}<br/>
+      <strong>Payment Status:</strong> {{STATE}}<br/>
+      <strong>Transaction ID:</strong> {{TXN_ID}}<br/>
+      <strong>Payment Mode:</strong> {{PAYMENT_MODE}}<br/>
+      <strong>Amount Paid:</strong> ₹{{FINAL_AMOUNT}}
+    </p>
+
+    <div class="section-title">Delivery Address</div>
+    <p>{{ADDRESS}}</p>
+
+    <div class="section-title">Items</div>
+    {{CART_TABLE}}
+
+    <p class="small">If you have any questions, reply to this email or contact our support.</p>
+    <br/>
+    <p>Warm regards,<br/>{{BRAND_NAME}}</p>
+  </div>
+</body>
+</html>

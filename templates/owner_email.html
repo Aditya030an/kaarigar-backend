@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <style>
+    body { font-family: Arial, sans-serif; color: #333; margin:0; padding:20px; background:#f7f7f7; }
+    .card{ background:#fff; border-radius:8px; padding:20px; box-shadow:0 2px 8px rgba(0,0,0,0.06); }
+    header{ display:flex; align-items:center; gap:12px; }
+    header img{ height:48px; }
+    h2{ margin:6px 0 14px 0; color:#1a202c; }
+    table{ width:100%; border-collapse:collapse; margin-top:12px; }
+    th, td{ padding:8px; border:1px solid #e6e6e6; text-align:left; font-size:13px; }
+    th{ background:#fafafa; }
+    .muted{ color:#666; font-size:13px; }
+    .section-title{ margin-top:20px; font-size:15px; border-bottom:1px solid #eee; padding-bottom:6px; }
+    .small{ font-size:12px; color:#777; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <header>
+      <img src="{{BRAND_LOGO_URL}}" alt="{{BRAND_NAME}} logo" onerror="this.style.display='none'"/>
+      <div>
+        <strong style="font-size:16px">{{BRAND_NAME}}</strong><br/>
+        <span class="small">New order notification</span>
+      </div>
+    </header>
+
+    <h2>New Order Received</h2>
+
+    <div class="section-title">Customer Details</div>
+    <p><strong>Name:</strong> {{NAME}}<br/>
+    <strong>Email:</strong> {{EMAIL}}<br/>
+    <strong>Phone:</strong> {{PHONE}}<br/>
+    <strong>Address:</strong> {{ADDRESS}}</p>
+
+    <div class="section-title">Order & Payment Summary</div>
+    <p class="muted">
+      <strong>Order ID:</strong> {{ORDER_ID}}<br/>
+      <strong>PhonePe Status:</strong> {{STATE}}<br/>
+      <strong>Amount (paise):</strong> {{AMOUNT}}<br/>
+      <strong>Expires at (epoch):</strong> {{EXPIRE_AT}}<br/>
+      <strong>Order Time:</strong> {{ORDER_TIME}}
+    </p>
+
+    <div class="section-title">Price Summary</div>
+    <p>
+      <strong>Total:</strong> ₹{{ITEMS_TOTAL}}<br/>
+      <strong>Discount:</strong> ₹{{DISCOUNT}}<br/>
+      <strong>Final Amount:</strong> ₹{{FINAL_AMOUNT}}<br/>
+      <strong>Coupon:</strong> {{COUPON}}
+    </p>
+
+    <div class="section-title">Items</div>
+    {{CART_TABLE}}
+
+    <div class="section-title">Payment Attempts</div>
+    {{PAYMENT_DETAILS_TABLE}}
+
+    <div class="section-title">Split Instruments</div>
+    {{SPLIT_TABLE}}
+
+    <p class="small">Meta Info: {{METAINFO}}</p>
+  </div>
+</body>
+</html>

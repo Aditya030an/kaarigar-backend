@@ -19,6 +19,9 @@
     "crypto": "^1.0.1",
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
-    "pg-sdk-node": "https://phonepe.mycloudrepo.io/public/repositories/phonepe-pg-sdk-node/releases/v2/phonepe-pg-sdk-node.tgz"
+    "nodemailer": "^7.0.10",
+    "pdfkit": "^0.17.2",
+    "pg-sdk-node": "https://phonepe.mycloudrepo.io/public/repositories/phonepe-pg-sdk-node/releases/v2/phonepe-pg-sdk-node.tgz",
+    "stream-buffers": "^3.0.3"
   }
 }
